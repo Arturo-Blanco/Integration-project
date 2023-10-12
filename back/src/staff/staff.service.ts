@@ -13,9 +13,9 @@ export class StaffService {
     ) { }
 
     async addStaff(createStaffDto: CreateStaffDto): Promise<string | Staff> {
-        const { name, surname, age, profession, registration, urlImg } = createStaffDto;
+        const { name, surname, profession, registration, url_img } = createStaffDto;
         try {
-            const newStaff: Staff = new Staff(name, surname, age, profession, registration, urlImg);
+            const newStaff: Staff = new Staff(name, surname, profession, registration, url_img);
             if (!newStaff) {
                 throw new Error(`Error addin professional ${name} ${surname}.`);
             }
@@ -46,25 +46,42 @@ export class StaffService {
     }
 
     async update(id: number, updateStaffDto: UpdateStaffDto): Promise<string> {
-        const { name, surname, age, profession, registration, urlImg } = updateStaffDto;
+        const { name, surname, profession, registration, url_img } = updateStaffDto;
         try {
-            const criteria : FindOneOptions = {where: { id : id}}
-            const professional : Staff = await this.staffRepository.findOne(criteria);
-            if(!professional) {
+            const criteria: FindOneOptions = { where: { id: id } }
+            const professional: Staff = await this.staffRepository.findOne(criteria);
+            if (!professional) {
                 throw new Error(`There is not professional with id : ${id}.`);
             }
 
-            const updatedFields = {name, surname, age, profession, registration, urlImg }
+            const updatedFields = { name, surname, profession, registration, url_img }
             const updatePromise = Object.entries(updatedFields).map(async ([key, value]) => {
-                if(value) {
+                if (value) {
                     professional[key] = value;
                 }
             })
 
             await Promise.all(updatePromise);
             await this.staffRepository.save(professional);
-            return `${name} ${surname} was edited.`
+            return `${professional.getSurname()} ${professional.getName()} was edited.`
 
+        } catch (error) {
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error.message
+            }, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    async delete(id: number): Promise<void | string> {
+        try {
+            const criteria: FindOneOptions = { where: { id: id } }
+            const professional: Staff = await this.staffRepository.findOne(criteria);
+            if (!professional) {
+                throw new Error(`There is not professional with id : ${id}.`);
+            }
+            await this.staffRepository.remove(professional);
+            return `Professional with id ${id} was removed`
         } catch (error) {
             throw new HttpException({
                 status: HttpStatus.BAD_REQUEST,

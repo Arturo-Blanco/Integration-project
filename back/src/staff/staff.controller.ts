@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post, Delete } from "@nestjs/common";
 import { StaffService } from "./staff.service";
 import { CreateStaffDto, UpdateStaffDto } from "./dto/staff.dto";
 import { Staff } from "./entities/staff.entity";
@@ -18,8 +18,13 @@ export class StaffController {
         return await this.staffService.findAll();
     }
 
-    @Patch(':id')
-    async getUpdate(@Param('id') id: number, @Body() updateStaffDto: UpdateStaffDto): Promise<string> {
+    @Patch('update/:id')
+    async getUpdate(@Param('id', ParseIntPipe) id: number, @Body() updateStaffDto: UpdateStaffDto): Promise<string> {
         return await this.staffService.update(id, updateStaffDto);
+    }
+
+    @Delete('delete/:id')
+    async getDelete(@Param('id', ParseIntPipe) id: number) : Promise<string | void> {
+        return await this.staffService.delete(id);
     }
 }

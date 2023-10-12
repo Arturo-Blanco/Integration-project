@@ -1,16 +1,14 @@
 export class CreateStaffDto {
     readonly name: string;
     readonly surname: string;
-    readonly age: number;
     readonly profession: string;
     readonly registration: string;
-    readonly urlImg: string;
+    readonly url_img: string;
 }
 export class UpdateStaffDto {
     readonly name: string;
     readonly surname: string;
-    readonly age: number;
     readonly profession: string;
     readonly registration: string;
-    readonly urlImg: string;
+    readonly url_img: string;
 }

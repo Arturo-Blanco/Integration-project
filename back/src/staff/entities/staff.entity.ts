@@ -13,9 +13,6 @@ export class Staff {
     surname: string;
 
     @Column()
-    age: number;
-
-    @Column()
     profession: string;
 
     @Column()
@@ -24,10 +21,9 @@ export class Staff {
     @Column()
     url_img: string;
 
-    constructor(name: string, surname: string, age: number, profession: string, registration: string, urlImg: string) {
+    constructor(name: string, surname: string, profession: string, registration: string, urlImg: string) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
         this.profession = profession;
         this.registration = registration;
         this.url_img = urlImg;
@@ -41,9 +37,6 @@ export class Staff {
     }
     public getSurname(): string {
         return this.surname;
-    }
-    public getAge(): number {
-        return this.age;
     }
     public getProfession(): string {
         return this.profession;
@@ -59,9 +52,6 @@ export class Staff {
     }
     public setSurname(newSurname: string): void {
         this.surname = newSurname;
-    }
-    public setAge(newAge: number): void {
-        this.age = newAge;
     }
     public setProfession(newProfession: string): void {
         this.profession = newProfession;
