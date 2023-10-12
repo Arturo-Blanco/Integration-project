@@ -1,0 +1,16 @@
+.section-title {
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(13, 18, 22);
+    -webkit-text-stroke: .5px rgb(211, 211, 236);
+}
+.section-header {
+    height: 35vh;
+    background-image: url('https://www.cemere.net/uploads/B2EPodAE/767x0_2560x0/478269-cemere-centro-medico-banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    padding-top: 3rem;
+}
