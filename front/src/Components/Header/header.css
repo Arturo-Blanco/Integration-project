@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    align-items: center;
+    height: 20vh;
+    background-color: rgb(56, 133, 136);
+}
+
+.pag-title {
+    font-family: 'Cinzel', serif;
+    color: white;
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: center;
+    width: 85%;
+    letter-spacing: 1rem;
+}
+
+.logo-container {
+    height: 80%;
+    width: max-content;
+    object-fit: contain;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 1rem;
+    margin-left: .7rem;
+}
+
+.logo {
+    height: 100%;
+    width: auto;
+    object-position: center;
+}
